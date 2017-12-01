@@ -1,8 +1,11 @@
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import entities.YouTubeItem;
 import entities.YouTubeResponse;
 
 import java.io.IOException;
@@ -65,5 +68,38 @@ public class YouTubeClient {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static HttpResponse<YouTubeResponse> getChannelInfo(String idChannel) {
+        try {
+            return Unirest.get(YOU_TUBE)
+                    .routeParam("method", "channels")
+                    .queryString("id", idChannel)
+                    .queryString("part", "snippet,statistics")
+                    .queryString("key", API_KEY)
+                    .asObject(YouTubeResponse.class);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    public static void main(String[] args) {
+        HttpResponse<YouTubeResponse> response = YouTubeClient.getChannelInfo("UC_x5XG1OV2P6uZZ5FSM9Ttw");
+        YouTubeResponse body = response.getBody();
+
+        for (YouTubeItem item : body.items) {
+            String date = item.snippet.publishedAt;
+            System.out.println("             id: " + item.id);
+            System.out.println("          title: " + item.snippet.title);
+            System.out.println("    publishedAt: " + date.substring(0, 4) + "/" + date.substring(5, 7) + "/"
+                    + date.substring(8, 10));
+            System.out.println("   commentCount: " + item.statistics.commentCount);
+            System.out.println("subscriberCount: " + item.statistics.subscriberCount);
+            System.out.println("      viewCount: " + item.statistics.viewCount);
+            System.out.println("     videoCount: " + item.statistics.videoCount);
+        }
     }
 }
