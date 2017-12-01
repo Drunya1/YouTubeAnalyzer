@@ -58,21 +58,4 @@ public class YouTubeClient {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        HttpResponse<YouTubeResponse> response = YouTubeClient.getChannelInfo("UC_x5XG1OV2P6uZZ5FSM9Ttw");
-        YouTubeResponse body = response.getBody();
-
-        for (YouTubeItem item : body.items) {
-            String date = item.snippet.publishedAt;
-            System.out.println("             id: " + item.id);
-            System.out.println("          title: " + item.snippet.title);
-            System.out.println("    publishedAt: " + date.substring(0, 4) + "/" + date.substring(5, 7) + "/"
-                    + date.substring(8, 10));
-            System.out.println("   commentCount: " + item.statistics.commentCount);
-            System.out.println("subscriberCount: " + item.statistics.subscriberCount);
-            System.out.println("      viewCount: " + item.statistics.viewCount);
-            System.out.println("     videoCount: " + item.statistics.videoCount);
-        }
-    }
 }
