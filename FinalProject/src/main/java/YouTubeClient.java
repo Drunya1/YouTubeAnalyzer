@@ -8,12 +8,14 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import entities.YouTubeItem;
 import entities.YouTubeResponse;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class YouTubeClient {
 
     private static final String YOU_TUBE = "https://www.googleapis.com/youtube/v3/{method}";
-    private static final String API_KEY = "AIzaSyDMk2QAFyas-sbf0K9nFq-U5J5LAJHr81k";
 
     static {
         Unirest.setObjectMapper(new ObjectMapper() {
@@ -40,38 +42,9 @@ public class YouTubeClient {
 
     private YouTubeClient(){}
 
-    public static HttpResponse<YouTubeResponse> getActivities(String channelId, int maxResults) {
-        try {
-            return Unirest.get(YOU_TUBE)
-                    .routeParam("method", "activities")
-                    .queryString("channelId", channelId)
-                    .queryString("maxResults", maxResults)
-                    .queryString("part", "snippet")
-                    .queryString("key", API_KEY)
-                    .asObject(YouTubeResponse.class);
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static HttpResponse<YouTubeResponse> getSearchResult(String query, int maxResults) {
-        try {
-            return Unirest.get(YOU_TUBE)
-                    .routeParam("method", "search")
-                    .queryString("q", query)
-                    .queryString("maxResults", maxResults)
-                    .queryString("part", "snippet")
-                    .queryString("key", API_KEY)
-                    .asObject(YouTubeResponse.class);
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static HttpResponse<YouTubeResponse> getChannelInfo(String idChannel) {
         try {
+            String API_KEY = new Scanner(new File("src\\main\\resources\\YouTubeApiKey.txt")).next();
             return Unirest.get(YOU_TUBE)
                     .routeParam("method", "channels")
                     .queryString("id", idChannel)
@@ -80,11 +53,11 @@ public class YouTubeClient {
                     .asObject(YouTubeResponse.class);
         } catch (UnirestException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         return null;
     }
-
-
 
     public static void main(String[] args) {
         HttpResponse<YouTubeResponse> response = YouTubeClient.getChannelInfo("UC_x5XG1OV2P6uZZ5FSM9Ttw");
