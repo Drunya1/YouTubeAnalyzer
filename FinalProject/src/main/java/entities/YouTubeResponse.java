@@ -6,5 +6,13 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class YouTubeResponse {
-    public ArrayList<YouTubeItem> items = new ArrayList<YouTubeItem>();
+    private ArrayList<YouTubeItem> items = new ArrayList<YouTubeItem>();
+
+    public ArrayList<YouTubeItem> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<YouTubeItem> items) {
+        this.items = items;
+    }
 }
