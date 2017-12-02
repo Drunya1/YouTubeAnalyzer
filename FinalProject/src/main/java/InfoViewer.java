@@ -35,6 +35,6 @@ public class InfoViewer {
 
     public static void main(String[] args) {
         InfoViewer.showGlobalInfo("UC_x5XG1OV2P6uZZ5FSM9Ttw");
-        InfoViewer.showMediaResonanceInfo("UC_x5XG1OV2P6uZZ5FSM9Ttw");
+        InfoViewer.showMediaResonanceInfo("UC-lHJZR3Gqxm24_Vd_AJ5Yw");
     }
 }
