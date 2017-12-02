@@ -4,40 +4,40 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class YouTubeStatistics {
-    private int viewCount;
-    private int commentCount;
-    private int subscriberCount;
-    private int videoCount;
+    private String viewCount;
+    private String commentCount;
+    private String subscriberCount;
+    private String videoCount;
 
-    public int getViewCount() {
+    public String getViewCount() {
         return viewCount;
     }
 
-    public void setViewCount(int viewCount) {
+    public void setViewCount(String viewCount) {
         this.viewCount = viewCount;
     }
 
-    public int getCommentCount() {
+    public String getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(int commentCount) {
+    public void setCommentCount(String commentCount) {
         this.commentCount = commentCount;
     }
 
-    public int getSubscriberCount() {
+    public String getSubscriberCount() {
         return subscriberCount;
     }
 
-    public void setSubscriberCount(int subscriberCount) {
+    public void setSubscriberCount(String subscriberCount) {
         this.subscriberCount = subscriberCount;
     }
 
-    public int getVideoCount() {
+    public String getVideoCount() {
         return videoCount;
     }
 
-    public void setVideoCount(int videoCount) {
+    public void setVideoCount(String videoCount) {
         this.videoCount = videoCount;
     }
 }
