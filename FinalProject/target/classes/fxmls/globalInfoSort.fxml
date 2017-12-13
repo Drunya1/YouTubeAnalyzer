@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GlobalInfoSortPageController">
+   <children>
+      <AnchorPane prefHeight="52.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#moveToYTAnalytics" prefHeight="11.0" prefWidth="71.0" text="back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="timeLabel" layoutX="315.0" layoutY="11.0" prefHeight="17.0" prefWidth="229.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="52.0" prefWidth="600.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="88.0" layoutX="10.0" stroke="BLACK" strokeType="INSIDE" width="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <Label layoutX="24.0" layoutY="7.0" text="Channels sorting" AnchorPane.leftAnchor="24.0">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="30.0" text="This query will display whole list of sorted channels by: " AnchorPane.leftAnchor="24.0">
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="48.0" prefHeight="20.0" prefWidth="481.0" text="name, creation date, subscribers,videos and views." AnchorPane.leftAnchor="24.0">
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="103.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="10.0" layoutY="18.0" text="Enter channels ID (channel1 ID, channel2 ID, ...):" AnchorPane.leftAnchor="10.0">
+               <font>
+                  <Font name="Roboto Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textField" layoutX="10.0" layoutY="58.0" prefHeight="38.0" prefWidth="439.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="151.0" />
+            <Button fx:id="btnSearch" layoutX="458.0" layoutY="58.0" mnemonicParsing="false" onAction="#searchChannels" prefHeight="38.0" prefWidth="132.0" text="search" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="Roboto Regular" size="20.0" />
+               </font>
+            </Button>
+            <SplitMenuButton layoutX="458.0" layoutY="11.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="sort by" AnchorPane.rightAnchor="10.0">
+              <items>
+                 <MenuItem fx:id="miName" mnemonicParsing="false" onAction="#sortByName" text="Name" />
+                 <MenuItem fx:id="miDate" mnemonicParsing="false" onAction="#sortByDate" text="Date" />
+                 <MenuItem fx:id="miSubscribers" mnemonicParsing="false" onAction="#sortBySubscribers" text="Subscribers" />
+                 <MenuItem fx:id="miVideos" mnemonicParsing="false" onAction="#sortByVideos" text="Videos" />
+                 <MenuItem fx:id="miViews" mnemonicParsing="false" onAction="#sortByViews" text="Views" />
+              </items>
+               <font>
+                  <Font name="Roboto Regular" size="20.0" />
+               </font>
+            </SplitMenuButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="content" prefHeight="275.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="table" prefHeight="269.0" prefWidth="600.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+              <columns>
+                <TableColumn fx:id="columnName" prefWidth="159.0" text="Name" />
+                  <TableColumn fx:id="columnId" prefWidth="83.0" text="ID" />
+                <TableColumn fx:id="columnDate" prefWidth="83.0" text="Date" />
+                  <TableColumn fx:id="columnSubscribers" minWidth="0.0" prefWidth="87.0" text="Subscribers" />
+                  <TableColumn fx:id="columnVideos" minWidth="0.0" prefWidth="60.0" text="Videos" />
+                  <TableColumn fx:id="columnViews" prefWidth="106.0" text="Views" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -9,9 +9,8 @@ import entities.playlist.PlaylistResponse;
 import entities.playlistItems.PlaylistItemsResponse;
 import entities.video.VideoResponse;
 import properties.YouTubeProperties;
-import settings.YouTubeCache;
+import setting.YouTubeCache;
 import util.Settings;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +19,7 @@ import java.util.Scanner;
 
 public class YouTubeClient {
     private static Properties properties = YouTubeProperties.loadPPropertiesFromFile("src/main/resources/youTube.properties");
-    private static final String CACHE_PATH = "src/main/resources/cache/cache.json";
+    private static final String CACHE_PATH = Settings.cachePath;
 
     private YouTubeClient(){}
 
@@ -48,18 +47,26 @@ public class YouTubeClient {
     }
 
     public static ChannelResponse getChannelInfo(String idChannel) {
+        Settings.checkCurrentConfiguration();
         try {
             YouTubeCache cache = null;
-            Scanner scanner = new Scanner(new File(CACHE_PATH));
-            if (scanner.hasNext()) {
-                String json = scanner.useDelimiter("\\Z").next();
-                cache = JSON.parseObject(json, YouTubeCache.class);
-                for (ChannelResponse elem : cache.getResponses()) {
-                    if (elem.getItems().size() != 0 && elem.getItems().get(0).getId().equals(idChannel)) {
-                        return elem;
+            if (Settings.checkCache) {
+                File source = new File(CACHE_PATH);
+                if (!source.exists()) {
+                    source.createNewFile();
+                }
+                Scanner scanner = new Scanner(source);
+                if (scanner.hasNext()) {
+                    String json = scanner.useDelimiter("\\Z").next();
+                    cache = JSON.parseObject(json, YouTubeCache.class);
+                    for (ChannelResponse elem : cache.getResponses()) {
+                        if (elem.getItems().size() != 0 && elem.getItems().get(0).getId().equals(idChannel)) {
+                            return elem;
+                        }
                     }
                 }
             }
+
             ChannelResponse response = Unirest.get(properties.getProperty("YOU_TUBE"))
                     .routeParam("method", "channels")
                     .queryString("id", idChannel)
@@ -72,12 +79,16 @@ public class YouTubeClient {
             }
             cache.getResponses().add(response);
             if (Settings.checkCache) {
-                FileWriter writer = new FileWriter(new File(Settings.cachePath)); // if path != null
+                File file = new File(Settings.cachePath);
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                FileWriter writer = new FileWriter(file);
                 writer.write(JSON.toJSONString(cache));
                 writer.flush();
             }
             return response;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
