@@ -7,8 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ThumbnailImage {
-    private String url;
-    private int width;
-    private int height;
+public class PageInfo {
+    private int totalResults;
 }
