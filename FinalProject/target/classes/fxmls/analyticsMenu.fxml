@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.YouTubeAnalyticsController">
+   <AnchorPane prefHeight="123.0" prefWidth="600.0">
+      <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="136.0" layoutY="59.0" prefHeight="49.0"
+             prefWidth="329.0" text="YouTube Analytics" textAlignment="CENTER" AnchorPane.leftAnchor="136.0"
+             AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="59.0">
+         <font>
+            <Font name="Roboto Slab Bold" size="35.0"/>
+         </font>
+      </Label>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#moveToMainMenu" prefHeight="11.0" prefWidth="71.0"
+              text="back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Roboto Regular" size="18.0"/>
+         </font>
+      </Button>
+   </AnchorPane>
+   <VBox alignment="CENTER" prefHeight="314.0" prefWidth="600.0">
+      <children>
+         <Button fx:id="btnGlobalInfo" mnemonicParsing="false" onAction="#moveToGlobalInfoPage" prefWidth="275.0"
+                 text="global information">
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="btnCompareGlobalInfo" mnemonicParsing="false" onAction="#moveToGlobalInfoComparePage"
+                 prefWidth="275.0" text="compare global info">
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnSortChannels" mnemonicParsing="false" onAction="#moveToGlobalInfoSort" prefWidth="275.0"
+                 text="sort channels">
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnMediaResonance" mnemonicParsing="false" onAction="#moveToMediaResonancePage"
+                 prefWidth="275.0" text="m.resonance">
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnMediaResonanceCompare" mnemonicParsing="false" onAction="#moveToMediaResonanceCompare"
+                 prefHeight="40.0" prefWidth="278.0" text="compare m.resonance">
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnMediaResonanceSort" mnemonicParsing="false" onAction="#moveToMediaResonanceSort"
+                 prefWidth="275.0" text="sort by m.resonance">
+            <font>
+               <Font name="Roboto Regular" size="20.0"/>
+            </font>
+            <VBox.margin>
+               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </VBox.margin>
+         </Button>
+      </children>
+   </VBox>
+</VBox>

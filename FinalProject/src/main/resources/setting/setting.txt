@@ -1,0 +1,3 @@
+checkTime:1
+checkCache:1
+cachePath:src/main/resources/cache/cache.json
